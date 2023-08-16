@@ -1116,7 +1116,7 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
     return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
 
-var styles$1 = {"container":"Button-module_container__yo5hb"};
+var styles$1 = {"container":"Button-module_container__Lkt-f"};
 
 function Button(_a) {
   var {
