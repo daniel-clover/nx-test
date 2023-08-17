@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import cx from 'clsx';
 import styles from './styles.module.scss';
-import type { SupportedLocales } from '../../../../../tools/locale';
-import { getCurrentLocale } from '../../../../../tools/locale';
+import type { SupportedLocales } from '../../../../../hooks/locale';
+import { getCurrentLocale } from '../../../../../hooks/locale';
 import { getLanguageStrings } from './localizations';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'secondaryGray' | 'tertiary';
