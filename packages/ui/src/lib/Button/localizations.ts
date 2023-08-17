@@ -1,4 +1,4 @@
-import { createLocalization } from '../../../../../tools/createLocalization';
+import { createLocalization } from '../../../../../hooks/createLocalization';
 
 const localizations = createLocalization<LanguageKeys>();
 
