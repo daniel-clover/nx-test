@@ -1,0 +1,105 @@
+@use './colors' as colors;
+@use './placeholders';
+@use './functions';
+
+:global(.labelText) {
+  @extend %label-text-properties;
+}
+
+:global(.secondaryText) {
+  @extend %secondary-text-properties;
+}
+
+:global(.captionText) {
+  @extend %caption-text-properties;
+}
+
+:global(.tertiaryButtonText) {
+  // font-size: functions.rem(14);
+  font-size: calc(14rem / 16);
+  font-weight: 600;
+  line-height: calc(22 / 14);
+  text-transform: uppercase;
+}
+
+:global(.eyebrow) {
+  @extend %eyebrow-text-properties;
+}
+
+:global(.spotlight) {
+  @extend %spotlight-text-properties;
+}
+
+:global(.inverted) {
+  color: colors.$white;
+  background-color: colors.$blue-dark-background;
+  a {
+    color: colors.$blue-accent;
+  }
+  .secondaryText {
+    color: colors.$gray-light;
+  }
+  .labelText {
+    color: colors.$white;
+  }
+}
+a {
+  @extend %link-text-properties;
+}
+
+// visually hidden from the user, but still available for screen readers
+:global(.visuallyHidden) {
+  position: absolute; // Remove the item from normal flow
+  white-space: nowrap; // Workaround for falsely pronounced, smushed text
+
+  width: 1px; // Set it to the smallest possible size
+  height: 1px; // (some screen readers ignore elements with zero height and width)
+
+  overflow: hidden; // Hide overflowing content after resizing
+  border: 0; // Reset any property that may change the elements size
+  padding: 0;
+
+  /* Clipping defines what part of an element should be displayed. */
+  clip: rect(0 0 0 0); /* Deprecated clip property for older browsers */
+  clip-path: inset(
+    50%
+  ); /* clip-path for newer browsers. inset(50%) defines an inset rectangle that makes the content disappear.  */
+
+  margin: -1px; /* It seems like at the moment nobody is quite sure why margin: -1px is there. On top of that it seems to cause issues (see: https://github.com/h5bp/html5-boilerplate/issues/1985). */
+}
+
+/** favor class selector over HTML selector  */
+:global(.h1) {
+  font-size: functions.rem(24);
+  line-height: calc(36px / 24px);
+  font-weight: 500;
+}
+
+:global(.h2) {
+  font-size: functions.rem(24);
+  line-height: calc(36px / 24px);
+  font-weight: 300;
+}
+
+:global(.h3) {
+  font-size: functions.rem(20);
+  line-height: calc(36px / 24px);
+  font-weight: 400;
+}
+
+:global(.h4) {
+  font-size: functions.rem(18);
+  line-height: calc(36px / 24px);
+  font-weight: 400;
+}
+
+:global(.h5) {
+  font-size: functions.rem(15);
+  line-height: calc(36px / 24px);
+  font-weight: 500;
+}
+
+:global(.h6) {
+  font-size: functions.rem(13);
+  line-height: calc(36px / 24px);
+}

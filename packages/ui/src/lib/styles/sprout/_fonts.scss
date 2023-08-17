@@ -1,0 +1,47 @@
+// -----------------------------------------------------------------------------
+// This file contains all @font-face declarations, if any.
+// -----------------------------------------------------------------------------
+
+@font-face {
+  font-family: 'Graphik';
+  font-weight: 300; // 'Graphik Light';
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Light-Cy-Gr-Web.eot');
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Light-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Light-Cy-Gr-Web.woff2') format('woff2'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Light-Cy-Gr-Web.woff') format('woff'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Graphik';
+  font-weight: 400; // 'Graphik Regular';
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Regular-Cy-Gr-Web.eot');
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Regular-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Regular-Cy-Gr-Web.woff2') format('woff2'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Regular-Cy-Gr-Web.woff') format('woff'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Graphik';
+  font-weight: 500; // 'Graphik Medium';
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Medium-Cy-Gr-Web.eot');
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Medium-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Medium-Cy-Gr-Web.woff2') format('woff2'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Medium-Cy-Gr-Web.woff') format('woff'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Graphik';
+  font-weight: 600; // 'Semi-bold';
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Semibold-Cy-Gr-Web.eot');
+  src: url('https://cloverstatic.com/content/fonts/graphik/Graphik-Semibold-Cy-Gr-Web.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Semibold-Cy-Gr-Web.woff2') format('woff2'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Semibold-Cy-Gr-Web.woff') format('woff'),
+    url('https://cloverstatic.com/content/fonts/graphik/Graphik-Semibold.otf') format('opentype');
+}

@@ -1,0 +1,45 @@
+@use './colors' as colors;
+
+%link-text-properties {
+  color: colors.$blue;
+  text-decoration: underline;
+
+  &:focus {
+    outline: 1px dotted colors.$gray;
+    -moz-outline-radius: 3px;
+  }
+
+  // @include mixins.on-event {
+  //   color: colors.$blue-dark;
+  //   text-decoration: none;
+  // }
+}
+
+%label-text-properties {
+  color: colors.$black;
+  font-size: calc(15rem / 16);
+  line-height: calc(24 / 15);
+}
+
+%caption-text-properties {
+  font-size: calc(12rem / 16);
+  line-height: calc(18 / 12);
+}
+
+%spotlight-text-properties {
+  font-size: calc(30rem / 16);
+  line-height: calc(44 / 30);
+}
+
+%secondary-text-properties {
+  color: colors.$gray-dark;
+  font-size: calc(14rem / 16);
+  line-height: calc(22 / 16);
+}
+
+%eyebrow-text-properties {
+  font-size: calc(15rem / 16);
+  font-weight: 600;
+  line-height: calc(20 / 15);
+  text-transform: uppercase;
+}

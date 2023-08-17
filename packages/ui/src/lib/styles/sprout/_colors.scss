@@ -1,0 +1,120 @@
+/**
+ * color defintions
+ * @see https://www.figma.com/file/muqmj4npaceugvwqntuhnd/foundation?node-id=1%3a51
+ */
+
+:root {
+  --color-base-gray-light: #cccccc;
+  --color-base-gray-medium: #999999;
+  --color-base-gray-dark: #111111;
+  --color-base-red: #ff0000;
+  --color-base-green: #00ff00;
+  --color-font-base: #ff0000;
+  --color-font-secondary: #00ff00;
+  --color-font-tertiary: #cccccc;
+  --color-primary-colors-green-background: #f2fcee;
+  --color-primary-colors-green-accent: #43b02a;
+  --color-primary-colors-green: #228800;
+  --color-primary-colors-green-dark: #276a16;
+  --color-secondary-colors-blue-background: #e6f3ff;
+  --color-secondary-colors-blue-accent: #339dff;
+  --color-secondary-colors-blue: #3271ab;
+  --color-secondary-colors-blue-dark: #285a88;
+  --color-secondary-colors-blue-dark-background: #253338;
+  --color-secondary-colors-blue-text-link: #0764ab;
+  --color-tertiary-colors-teal-background: #eefbfc;
+  --color-tertiary-colors-teal-accent: #69d0dd;
+  --color-tertiary-colors-teal: #14818d;
+  --color-tertiary-colors-teal-dark: #286271;
+  --color-tertiary-colors-eggplant-background: #faf3fd;
+  --color-tertiary-colors-eggplant-accent: #9966cc;
+  --color-tertiary-colors-eggplant-dark: #5b3e77;
+  --color-utility-colors-red-background: #ffeded;
+  --color-utility-colors-red: #e70000;
+  --color-utility-colors-red-dark: #c60000;
+  --color-utility-colors-red-pin: #ff5e5e;
+  --color-utility-colors-yellow-background: #fff6cc;
+  --color-utility-colors-yellow: #ffd100;
+  --color-neutral-colors-gray-background: #fbfbfb;
+  --color-neutral-colors-gray-light: #e5e5e5;
+  --color-neutral-colors-gray-disabled: #c7c7c7;
+  --color-neutral-colors-gray: #727272;
+  --color-neutral-colors-gray-dark: #5c5c5c;
+  --color-neutral-colors-black: #000000;
+  --color-neutral-colors-white: #ffffff;
+  --color-beta-secondary-colors-blue-extra-dark-text-beta: #212c31;
+  --color-beta-secondary-colors-deprecated-blue-dark-text-link-beta: #0764ab;
+  --size-font-small: 0.75rem; /* the small size of the font */
+  --size-font-medium: 1rem; /* the medium size of the font */
+  --size-font-large: 2rem; /* the large size of the font */
+  --size-font-base: 1rem; /* the base size of the font */
+}
+
+// $green-background: #f2fcee;
+$green-background: var(--color-primary-colors-green-background);
+$green-unknown-light: #83c575;
+// $green-accent: #43b02a;
+$green-accent: var(--color-primary-colors-green-accent);
+// $green: #228800;
+$green: var(--color-primary-colors-green);
+$green-dark: #246615;
+
+$blue-gray-background: #bfd2e3;
+// $blue-light-background: #e6f3ff;
+$blue-light-background: var(--color-secondary-colors-blue-background);
+// $blue-background: #e6f3ff;
+$blue-background: var(--color-secondary-colors-blue-background);
+$blue-unknown-outline: #70baff;
+$blue-unknown-light: #7bbaf5;
+// $blue-accent: #339dff;
+$blue-accent: var(--color-secondary-colors-blue-accent);
+$blue-toggle: #1177cc;
+// $blue: #3271ab;
+$blue: var(--color-secondary-colors-blue);
+// $blue-dark: #285a88;
+$blue-dark: var(--color-secondary-colors-blue-dark);
+// $blue-dark-background: #253338;
+$blue-dark-background: var(--color-secondary-colors-blue-dark-background);
+
+// $teal-background: #eefbfc;
+$teal-background: var(--color-tertiary-colors-teal-background);
+// $teal-accent: #69d0dd;
+$teal-accent: var(--color-tertiary-colors-teal-accent);
+// $teal: #14818d;
+$teal: var(--color-tertiary-colors-teal);
+// $teal-dark: #286271;
+$teal-dark: var(--color-tertiary-colors-teal-dark);
+
+// $eggplant-background: #faf3fd;
+$eggplant-background: var(--color-tertiary-colors-eggplant-background);
+// $eggplant-accent: #9966cc;
+$eggplant-accent: var(--color-tertiary-colors-eggplant-accent);
+// $eggplant-dark: #5b3e77;
+$eggplant-dark: var(--color-tertiary-colors-eggplant-dark);
+
+// $red-background: #ffeded;
+$red-background: var(--color-utility-colors-red-background);
+$red-unknown-outline: #ee4d4d;
+// $red: #e70000;
+$red: var(--color-utility-colors-red);
+// $red-dark: #c60000;
+$red-dark: var(--color-utility-colors-red-dark);
+
+// $yellow-background: #fff6cc;
+$yellow-background: var(--color-utility-colors-yellow-background);
+// $yellow: #ffd100;
+$yellow: var(--color-utility-colors-yellow);
+
+$gray-background: #fbfbfb;
+$gray-background: var(--color-neutral-colors-gray-background);
+// $gray-light: #e5e5e5;
+$gray-light: var(--color-neutral-colors-gray-light);
+// $gray-disabled: #c7c7c7;
+$gray-disabled: var(--color-neutral-colors-gray-disabled);
+// $gray: #727272;
+$gray: var(--color-neutral-colors-gray);
+$gray-dark: #5c5c5c;
+$gray-dark: var(--color-neutral-colors-gray-dark);
+
+$black: var(--color-neutral-colors-black);
+$white: var(--color-neutral-colors-white);

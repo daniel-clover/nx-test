@@ -1,0 +1,43 @@
+/** @forward should precede @use */
+/** available everywhere */
+@forward './global-classes';
+@forward './placeholders';
+
+/** available everywhere but namespaced */
+@forward './colors'; // usage: core.$green
+@forward './breakpoints'; //usage: core.$tablet
+@forward './functions'; // usage: core.rem()
+@forward './variables'; // usage: core.$medium
+
+/** used in this stylesheet */
+@use './fonts';
+// @use './reset';
+
+/** Regular font family */
+$primary-font-master: 'Graphik';
+/// @type List
+$primary-font-stack: $primary-font-master, 'Helvetica', sans-serif !default;
+
+html {
+  box-sizing: border-box;
+  /** respect user settings DO NOT CHANGE */
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  color: #000;
+  font-variant: normal;
+  font-family: $primary-font-stack;
+  font-size: calc(15rem / 16); /** 0.9375rem (15px) */
+  /** 
+    *  to calculate unitless:  line-height calc(line-height (px) / font-size (px) )
+    *  line-height: calc(24 / 15) === line-height: 1.6;
+  */
+  line-height: calc(24px / 15px); // 1.6
+}

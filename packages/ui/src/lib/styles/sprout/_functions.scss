@@ -1,0 +1,33 @@
+@use 'sass:math';
+@use 'sass:meta';
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unless number
+@function strip-unit($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+    $divisor: $number * 0 + 1;
+    // update to use calc
+    @return calc($number / $divisor);
+  }
+
+  @return $number;
+}
+
+/*
+*  usage: 
+*  font-size: rem(15);
+*/
+@function rem($target-px) {
+  @return calc(strip-unit($target-px) / 16) * 1rem;
+}
+
+/** usage: @include sprout.typography(24, 32) */
+@mixin typography($font-size, $line-height) {
+  font-size: rem($font-size);
+  /** renders unitless line-height */
+  line-height: calc(#{strip-unit($line-height)}/#{strip-unit($font-size)});
+}

@@ -1,6 +1,6 @@
 import {Meta, StoryObj} from '@storybook/react'
 
-import Button from './Button'
+import {Button} from './Button'
 
 
 type Story = StoryObj<typeof Button>
@@ -15,6 +15,6 @@ export default meta
 
 export const Default_State:Story = {
     args: {
-        children:'Hi, Daniel!'
+        children:'Hi, Igor!'
     }
 }
