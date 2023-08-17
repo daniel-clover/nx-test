@@ -318,3 +318,17 @@ $red: var(--colors-red);
 .error {
   color: sprout.$red;
 }
+
+// temp hacks for repo dev
+
+.busyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  > svg {
+    position: absolute;
+    z-index: 10;
+    inset-block-start: -1.5px;
+  }
+}
