@@ -40,10 +40,10 @@ export function setCurrentLocale(locale: string) {
   currentLocale = locale;
 }
 
-export function getCurrentLocale(currentLocale): SupportedLocales {
+export function getCurrentLocale(): SupportedLocales {
   return currentLocale;
 }
 
-export function getSupportedLocales(supportedLocales) {
+export function getSupportedLocales() {
   return supportedLocales;
 }

@@ -14,6 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "noImplicitAny": false,
     "paths": {
       "@clover/ui": ["packages/ui/src/index.ts"]
     }
