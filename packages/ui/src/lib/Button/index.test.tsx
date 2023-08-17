@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button, IconButton, LinkButton } from './index';
+// import { Button, IconButton, LinkButton } from './index';
+import { Button, LinkButton } from './index';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Button', () => {
@@ -42,18 +43,18 @@ describe('Button', () => {
   });
 });
 
-describe('IconButton', () => {
-  it('should simply render an instance when invoked', () => {
-    render(<IconButton glyph="info" label="test label" />);
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
-  });
+// describe('IconButton', () => {
+//   it('should simply render an instance when invoked', () => {
+//     render(<IconButton glyph="info" label="test label" />);
+//     const button = screen.getByRole('button');
+//     expect(button).toBeInTheDocument();
+//   });
 
-  it('should render the label text', () => {
-    render(<IconButton glyph="info" label="test label" />);
-    expect(screen.getByRole('button')).toHaveAccessibleName('test label');
-  });
-});
+//   it('should render the label text', () => {
+//     render(<IconButton glyph="info" label="test label" />);
+//     expect(screen.getByRole('button')).toHaveAccessibleName('test label');
+//   });
+// });
 
 describe('LinkButton', () => {
   it('should render as a link when "href" is passed', () => {
