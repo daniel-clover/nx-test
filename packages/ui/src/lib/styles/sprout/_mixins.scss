@@ -1,0 +1,98 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'breakpoints';
+@use 'colors';
+
+// TODO: determine if we can remove completely
+
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin word-wrap {
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@function tint($color, $percentage) {
+  @return color.mix(colors.$white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return color.mix(black, $color, $percentage);
+}
+
+/// Event wrapper - Allows you to apply hover, active, and focus states in one go
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+@mixin screen-tablet {
+  @media screen and (min-width: breakpoints.$tablet) {
+    @content;
+  }
+}
+
+@mixin screen-desktop {
+  @media screen and (min-width: breakpoints.$desktop) {
+    @content;
+  }
+}
+
+@mixin screen-desktop-big {
+  @media screen and (min-width: breakpoints.$desktop-big) {
+    @content;
+  }
+}
+
+// Takes a map of screen_size to property value and applies the property_name to the correct value to each breakpoint
+@mixin apply-property-per-breakpoint($property-name, $map) {
+  #{$property-name}: map.get($map, sm);
+
+  @include screen-tablet {
+    #{$property-name}: map.get($map, md);
+  }
+
+  @include screen-desktop {
+    #{$property-name}: map.get($map, lg);
+  }
+
+  @include screen-desktop-big {
+    #{$property-name}: map.get($map, xl);
+  }
+}

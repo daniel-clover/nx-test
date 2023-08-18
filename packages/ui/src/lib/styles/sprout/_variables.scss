@@ -1,0 +1,30 @@
+@use 'colors';
+
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// misc
+$brand-color: colors.$green;
+$text-color: colors.$black;
+
+/// Regular font family
+$primary-font-master: 'Graphik';
+/// @type List
+$primary-font-stack: $primary-font-master, 'Helvetica', sans-serif !default;
+
+$light: 300 !default;
+$regular: 400 !default;
+$medium: 500 !default;
+$semibold: 600 !default;
+
+$base-font-size: 15px !default;
+$base-line-height: 1.6 !default;
+
+$border-radius-common: 4px;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;

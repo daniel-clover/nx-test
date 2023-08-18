@@ -1,0 +1,26 @@
+/**
+  The below breakpoints are MIN values.
+  @See https://cdn-images-1.medium.com/max/2000/1*7YeOvzoYgUEDJdfQy2ERXg.png
+
+  Notice that there is no breakpoint for mobile devices -
+  this is because we want the default css to target the smallest devices (aka mobile first)
+  @See https://zellwk.com/blog/how-to-write-mobile-first-css/
+ */
+$tablet: 600px;
+$tablet-landscape: 900px;
+$desktop: 1200px;
+$desktop-big: 1800px;
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'tablet': $tablet,
+  'tablet-landscape': $tablet-landscape,
+  'desktop': $desktop,
+  'desktop-big': $desktop-big,
+) !default;

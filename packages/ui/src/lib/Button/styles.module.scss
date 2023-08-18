@@ -1,0 +1,334 @@
+@use '../styles/sprout';
+@use '../styles/sprout/accessibility';
+
+$button-border-radius: sprout.$border-radius-common;
+
+.button {
+  --colors-blue-accent: 51, 157, 255;
+  --colors-green-accent: 67, 176, 42;
+  --colors-red: 231, 0, 0;
+}
+
+/** use local vars instead of sprout.$blue-accent etc. for local mixin */
+$blue-accent: var(--colors-blue-accent);
+$green-accent: var(--colors-green-accent);
+$red: var(--colors-red);
+
+@mixin focus($color) {
+  border: 1px solid sprout.$black;
+  outline: 3px solid rgba($color, 0.6); // sass-lint:disable-line no-color-literals
+  outline-offset: -1px;
+}
+
+/*** Spinner loading animation ***/
+
+@-moz-keyframes loadingSpin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loadingSpin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes loadingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  font-size: sprout.rem(14);
+  font-weight: sprout.$medium;
+  line-height: calc(22 / 14);
+  text-decoration: none;
+  /*
+  * 1. works like padding-top, padding-bottom
+  * 2. works like padding-left, padding-right
+  */
+  padding-block: sprout.rem(10); // *1
+  padding-inline: sprout.rem(16); // *2
+  border: solid 1px;
+  border-radius: $button-border-radius;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+
+  &:not(:disabled) {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .busyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    > span {
+      position: absolute;
+      z-index: 10;
+      inset-block-start: -1.5px;
+    }
+  }
+
+  .btnChildren {
+    display: inline-block;
+  }
+
+  &[aria-disabled='true'] {
+    .busyState {
+      svg {
+        animation: 1s infinite linear loadingSpin;
+      }
+      .reduceMotion {
+        @extend .visuallyHidden;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        svg {
+          display: none;
+        }
+        // Override the visuallyHidden styles
+        .reduceMotion {
+          display: flex;
+          inline-size: inherit;
+          block-size: inherit;
+          clip: auto;
+          clip-path: none;
+          margin: sprout.rem(2);
+        }
+      }
+    }
+
+    .btnChildren {
+      visibility: hidden;
+    }
+  }
+
+  &.primary {
+    background-color: sprout.$green;
+    border-color: sprout.$green;
+    color: sprout.$white;
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: sprout.$green-dark;
+      }
+
+      &:hover {
+        border-color: sprout.$green-dark;
+      }
+
+      &:focus {
+        /** use local vars instead of sprout.$green-accent  for local mixin */
+        @include focus($green-accent);
+      }
+
+      &.destructive {
+        background-color: sprout.$red;
+        border-color: sprout.$red;
+
+        &:hover,
+        &:focus {
+          background-color: sprout.$red-dark;
+        }
+
+        &:hover {
+          border-color: sprout.$red-dark;
+        }
+
+        &:focus {
+          /** use local vars instead of sprout.$red  for local mixin */
+          @include focus($red);
+        }
+        &[aria-disabled='true'] {
+          background: sprout.$red-dark;
+        }
+      }
+    }
+
+    &:disabled {
+      background-color: sprout.$gray-disabled;
+      border-color: sprout.$gray-disabled;
+    }
+
+    &[aria-disabled='true'] {
+      background: sprout.$green-dark;
+    }
+  }
+
+  &.secondary {
+    background-color: sprout.$white;
+    border-color: sprout.$green;
+    color: sprout.$green;
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: sprout.$green-background;
+        color: sprout.$green-dark;
+      }
+
+      &:focus {
+        /** use local vars instead of sprout.$green-accent  for local mixin */
+        @include focus($green-accent);
+      }
+
+      &.destructive {
+        border-color: sprout.$red;
+        color: sprout.$red;
+
+        &:hover,
+        &:focus {
+          background-color: sprout.$red-background;
+        }
+
+        &:focus {
+          /** use local vars instead of sprout.$red  for local mixin */
+          @include focus($red);
+        }
+      }
+    }
+
+    &:disabled {
+      color: sprout.$gray-disabled;
+      border-color: sprout.$gray-disabled;
+    }
+
+    &[aria-disabled='true'] {
+      background: sprout.$green-background;
+    }
+
+    &.destructive {
+      &[aria-disabled='true'] {
+        background: sprout.$red-background;
+      }
+    }
+  }
+
+  &.secondaryGray {
+    @extend .secondary;
+    border-color: sprout.$gray-dark;
+    color: sprout.$gray-dark;
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        color: sprout.$gray-dark;
+      }
+      &:hover {
+        background: sprout.$gray-light;
+      }
+      &:focus {
+        /** use local vars instead of sprout.$blue-accent  for local mixin */
+        @include focus($blue-accent);
+        background-color: sprout.$white;
+      }
+
+      &.destructive {
+        border-color: sprout.$red;
+        color: sprout.$red;
+      }
+    }
+
+    &:disabled {
+      color: sprout.$gray-disabled;
+    }
+
+    &[aria-disabled='true'] {
+      background: sprout.$gray-light !important;
+    }
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    border-color: transparent;
+    color: sprout.$blue;
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: sprout.$blue-background;
+      }
+
+      &:focus {
+        /** use local vars instead of sprout.blue-accent  for local mixin */
+        @include focus($blue-accent);
+      }
+
+      &.destructive {
+        color: sprout.$red;
+
+        &:hover {
+          // temporary until design is updated in Figma
+          border-color: transparent;
+          outline-color: transparent;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: sprout.$red-background;
+        }
+
+        &:focus {
+          /** use local vars instead of sprout.$red  for local mixin */
+          @include focus($red);
+        }
+
+        &[aria-disabled='true'] {
+          background: sprout.$red-dark;
+          color: #fff;
+        }
+      }
+    }
+
+    &:disabled {
+      color: sprout.$gray-disabled;
+    }
+
+    &[aria-disabled='true'] {
+      background: sprout.$blue-background;
+    }
+  }
+
+  &.fullwidth {
+    inline-size: 100%;
+  }
+
+  &.large {
+    font-size: sprout.rem(16);
+    font-weight: 500;
+    line-height: calc(24 / 16);
+    padding-block: sprout.rem(15);
+    padding-inline: sprout.rem(32);
+  }
+}
+
+.error {
+  color: sprout.$red;
+}
+
+// temp hacks for repo dev
+
+.busyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  > svg {
+    position: absolute;
+    z-index: 10;
+    inset-block-start: -1.5px;
+  }
+}
