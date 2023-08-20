@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "test": "nx run-many --all --target=test --all",
-    "lint": "nx run-many --all --target=lint --all",
-    "affected:lint": "nx affected --target=lint --all",
+    "lint": "nx run-many  affected  --target=lint --all",
     "clear": "nx run-many --all --target=clear"
   },
   "private": true,
