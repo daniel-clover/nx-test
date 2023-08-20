@@ -1,12 +1,21 @@
-import React, { forwardRef } from 'react';
-import { Button, ButtonProps, LinkButton, LinkButtonProps } from '../Button';
+import React, { forwardRef } from "react";
+import { Button, ButtonProps, LinkButton, LinkButtonProps } from "../Button";
 
 export type ActionProps = ButtonProps &
   LinkButtonProps &
   (
-    | { /** The path or link to be used. Use this if 'to' is not used */ href: string; to?: never }
-    | { /** The rout to navigate to using react-router. Use this if 'href' is not used */ to: string; href?: never }
-    | { /** Either 'to' or 'href' should be used, not both */ to?: never; href?: never }
+    | {
+        /** The path or link to be used. Use this if 'to' is not used */ href: string;
+        to?: never;
+      }
+    | {
+        /** The rout to navigate to using react-router. Use this if 'href' is not used */ to: string;
+        href?: never;
+      }
+    | {
+        /** Either 'to' or 'href' should be used, not both */ to?: never;
+        href?: never;
+      }
   );
 
 /**
@@ -27,16 +36,21 @@ export type ActionProps = ButtonProps &
  * @example
     <ActionButtonTemplate />
  */
-export const Action = forwardRef<HTMLButtonElement | HTMLAnchorElement, ActionProps>(
-  ({ href, to, ...passThroughProps }, ref) => {
-    return (
-      <>
-        {href || to ? (
-          <LinkButton ref={ref as React.ForwardedRef<HTMLAnchorElement>} to={to} href={href} {...passThroughProps} />
-        ) : (
-          <Button ref={ref as React.ForwardedRef<HTMLButtonElement>} {...passThroughProps} />
-        )}
-      </>
-    );
-  }
-);
+export const Action = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ActionProps
+>(({ href, to, ...passThroughProps }, ref) => {
+  return href || to ? (
+    <LinkButton
+      ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+      to={to}
+      href={href}
+      {...passThroughProps}
+    />
+  ) : (
+    <Button
+      ref={ref as React.ForwardedRef<HTMLButtonElement>}
+      {...passThroughProps}
+    />
+  );
+});

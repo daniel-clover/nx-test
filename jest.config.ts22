@@ -1,0 +1,12 @@
+// import { expect } from "@jest/globals";
+import { getJestProjects } from "@nx/jest";
+// import "@testing-library/jest-dom";
+
+import type { Config } from "@jest/types";
+
+const config: Config.InitialOptions = {
+  projects: getJestProjects(),
+  // setupFilesAfterEnv: ["./jest-setup.ts"],
+};
+
+export default config;
