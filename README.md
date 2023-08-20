@@ -40,7 +40,8 @@ Have a look at the [Nx Console extensions](https://nx.dev/nx-console). It provid
 
 ## Ready to deploy?
 
-Just run `nx build demoapp` to build the application. The build artifacts will be stored in the `dist/` directory, ready to be deployed.
+Just run `nx build ui` to build the application. The build artifacts will be stored in the `dist/` directory, ready to be deployed.
+
 
 ## Set up CI!
 
