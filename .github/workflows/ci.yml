@@ -1,4 +1,4 @@
-name: Nx Build CI
+name: Clover:UI CI
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -35,5 +35,19 @@ jobs:
       - name: Test
         run: yarn test
 
-      - name: Build
-        run: yarn nx build ui
+      - name: Build Packages
+        run: yarn build
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testbed App
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_AUTH_TOKEN: r-ZMCm0zCIzr3oS9daTvXWRa1NYCJlQWy3RB7So71uI # this is bad bad but i have no access to secrets
+          NETLIFY_SITE_ID: e79f255b-b622-448b-a490-8a39b1c6f72a
+        with:
+          args: deploy --dir=dist/packages/testbed --prod
