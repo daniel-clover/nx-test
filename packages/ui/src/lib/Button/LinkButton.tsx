@@ -1,19 +1,25 @@
-import React, { forwardRef } from "react";
-import { Link } from "react-router-dom";
-import { ButtonVariant } from "./Button";
-import cx from "clsx";
-import styles from "./styles.module.scss";
+import React, { AnchorHTMLAttributes, forwardRef, ReactElement, RefAttributes } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
+import { ButtonVariant } from './Button';
+import cx from 'clsx';
+import styles from './styles.module.scss';
 
 export type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   /** Defaults to 'primary' */
   variant?: ButtonVariant;
   /** sets width to 100% */
-  fullWidth?: boolean;
+  fullwidth?: boolean;
   /** increase font-size and padding */
   large?: boolean;
   /** if it is React Link the route to load */
   to?: string;
 };
+
+export type RoutedLinkProps = LinkProps & LinkButtonProps;
+
+export type AnchorButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & LinkButtonProps;
+
+type PolymorphicProps = AnchorButtonProps & RoutedLinkProps;
 
 /**
  * Anchor styled as Clover button.
@@ -53,51 +59,30 @@ export type LinkButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     Link button
 </LinkButton>
  */
-export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  (
-    {
-      variant = "primary",
-      fullWidth,
-      large,
-      className,
-      children,
-      href,
-      to,
-      ...passThroughProps
-    },
-    ref
-  ) => {
-    const isLink = href !== undefined && !to;
-    return isLink ? (
-      <a
-        ref={ref}
-        className={cx(
-          styles.button,
-          styles[variant],
-          fullWidth && styles.fullwidth,
-          large && styles.large,
-          className
-        )}
-        href={href}
-        {...passThroughProps}
-      >
+
+export const LinkButtonImpl = forwardRef<HTMLAnchorElement, PolymorphicProps>(
+  ({ variant = 'primary', fullwidth, large, className, children, ...passThroughProps }, ref) => {
+    const Component = 'href' in passThroughProps ? 'a' : Link;
+
+    const classNames = cx(
+      styles.button,
+      styles[variant],
+      fullwidth && styles.fullwidth,
+      large && styles.large,
+      className
+    );
+
+    return (
+      <Component className={classNames} {...passThroughProps} ref={ref}>
         {children}
-      </a>
-    ) : (
-      <Link
-        ref={ref}
-        to={to ?? ""}
-        className={cx(
-          styles.button,
-          styles[variant],
-          fullWidth && styles.fullwidth,
-          large && styles.large,
-          className
-        )}
-        {...passThroughProps}
-      >
-        {children}
-      </Link>
+      </Component>
     );
   }
 );
+
+export type LinkButtonType = typeof LinkButtonImpl & {
+  (props: AnchorButtonProps & RefAttributes<HTMLAnchorElement>): ReactElement | null;
+  (props: LinkButtonProps & RefAttributes<HTMLAnchorElement>): ReactElement | null;
+};
+
+export const LinkButton = LinkButtonImpl as LinkButtonType;
