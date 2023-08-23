@@ -16,7 +16,7 @@
 
 
 def SONARSCANNER_IMAGE = "sonarsource/sonar-scanner-cli" 
-def DOCKER_AGENT =  "gcr.io/clover-container-registries/node-web:latest"
+def DOCKER_AGENT =  "gcr.io/clover-container-registries/node-web/node18.12"
 def MAIN_BRANCH_NAME = "main"
 def STORYBOOK_BRANCH_NAME = "storybook"
 def DISABLE_STORYBOOK = 'null'
@@ -27,7 +27,7 @@ def TIMEOUT_MINS =  env.GLOBAL_TIMEOUT_MINS
 def KEEP_ARTIFACT_DAYS =  env.GLOBAL_KEEP_ARTIFACT_DAYS
 def KEEP_ARTIFACT_NUM = env.GLOBAL_KEEP_ARTIFACT_NUM
 def KEEP_BUILD_DAYS = env.GLOBAL_KEEP_BUILD_DAYS 
-def KEEP_BUILD_NUM = env.GLOBAL_KEEP_BUILD_NUM 
+def KEEP_BUILD_NUM = env.GLOBAL_KEEP_BUILD_NUM
 
 pipeline {
   environment {
@@ -99,21 +99,21 @@ pipeline {
 
     stage('Scan & Publish') {
       parallel {
-        stage('SonarQube Scan') {
-          // This stage will use the Test Coverage Data generated at 'Unit Tests' stage
-          agent {
-            docker {
-              image "${SONARSCANNER_IMAGE}"
-              reuseNode true
-              args "-v ${CACHE_VOL} "
-            }
-          }
-          steps {
-            withSonarQubeEnv('sonarqube.corp.clover.com') {
-              sh "sonar-scanner"
-            }
-          }
-        }
+        // stage('SonarQube Scan') {
+        //   // This stage will use the Test Coverage Data generated at 'Unit Tests' stage
+        //   agent {
+        //     docker {
+        //       image "${SONARSCANNER_IMAGE}"
+        //       reuseNode true
+        //       args "-v ${CACHE_VOL} "
+        //     }
+        //   }
+        //   steps {
+        //     withSonarQubeEnv('sonarqube.corp.clover.com') {
+        //       sh "sonar-scanner"
+        //     }
+        //   }
+        // }
 
         stage("Publish") {
           when {
