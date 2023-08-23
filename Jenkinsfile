@@ -1,18 +1,33 @@
 #!/usr/bin/env groovy
-def CONFIG = readYaml text: "${env.PIPELINE_CONFIG}"
-def SONARSCANNER_IMAGE = CONFIG.SONAR_AGENT == null ? "sonarsource/sonar-scanner-cli" : CONFIG.SONAR_AGENT
-def DOCKER_AGENT = CONFIG.DOCKER_AGENT == null ? "gcr.io/clover-container-registries/node-web:latest" : CONFIG.DOCKER_AGENT
-def MAIN_BRANCH_NAME = CONFIG.MAIN_BRANCH_NAME == null ? "main" : CONFIG.MAIN_BRANCH_NAME
-def STORYBOOK_BRANCH_NAME = CONFIG.STORYBOOK_BRANCH_NAME == null ? "storybook" : CONFIG.STORYBOOK_BRANCH_NAME
-def DISABLE_STORYBOOK = (CONFIG.DISABLE_STORYBOOK == null) ? 'null' : true
-def NPM_REGISTRY_URI = CONFIG.NPM_REGISTRY_URI == null ? "artifactory.corp.clover.com/artifactory/api/npm/npm-local" : CONFIG.NPM_REGISTRY_URI
-def SCOPE = CONFIG.SCOPE == null ? '@clover' : CONFIG.SCOPE
+// def CONFIG = readYaml text: "${env.PIPELINE_CONFIG}"
+// def SONARSCANNER_IMAGE = CONFIG.SONAR_AGENT == null ? "sonarsource/sonar-scanner-cli" : CONFIG.SONAR_AGENT
+// def DOCKER_AGENT = CONFIG.DOCKER_AGENT == null ? "gcr.io/clover-container-registries/node-web:latest" : CONFIG.DOCKER_AGENT
+// def MAIN_BRANCH_NAME = CONFIG.MAIN_BRANCH_NAME == null ? "main" : CONFIG.MAIN_BRANCH_NAME
+// def STORYBOOK_BRANCH_NAME = CONFIG.STORYBOOK_BRANCH_NAME == null ? "storybook" : CONFIG.STORYBOOK_BRANCH_NAME
+// def DISABLE_STORYBOOK = (CONFIG.DISABLE_STORYBOOK == null) ? 'null' : true
+// def NPM_REGISTRY_URI = CONFIG.NPM_REGISTRY_URI == null ? "artifactory.corp.clover.com/artifactory/api/npm/npm-local" : CONFIG.NPM_REGISTRY_URI
+// def SCOPE = CONFIG.SCOPE == null ? '@clover' : CONFIG.SCOPE
+// def CACHE_VOL = "/home/jenkins/.cache:/home/node/.cache"
+// def TIMEOUT_MINS = (CONFIG.TIMEOUT_MINS==null) ? env.GLOBAL_TIMEOUT_MINS : CONFIG.TIMEOUT_MINS
+// def KEEP_ARTIFACT_DAYS = (CONFIG.KEEP_ARTIFACT_DAYS==null) ? env.GLOBAL_KEEP_ARTIFACT_DAYS : CONFIG.KEEP_ARTIFACT_DAYS
+// def KEEP_ARTIFACT_NUM = (CONFIG.KEEP_ARTIFACT_NUM==null) ? env.GLOBAL_KEEP_ARTIFACT_NUM : CONFIG.KEEP_ARTIFACT_NUM
+// def KEEP_BUILD_DAYS = (CONFIG.GLOBAL_KEEP_BUILD_DAYS==null) ? env.GLOBAL_KEEP_BUILD_DAYS : CONFIG.GLOBAL_KEEP_BUILD_DAYS
+// def KEEP_BUILD_NUM = (CONFIG.KEEP_KEEP_BUILD_NUM==null) ? env.GLOBAL_KEEP_BUILD_NUM : CONFIG.KEEP_KEEP_BUILD_NUM
+
+
+def SONARSCANNER_IMAGE = "sonarsource/sonar-scanner-cli" 
+def DOCKER_AGENT =  "gcr.io/clover-container-registries/node-web:latest"
+def MAIN_BRANCH_NAME = "main"
+def STORYBOOK_BRANCH_NAME = "storybook"
+def DISABLE_STORYBOOK = 'null'
+def NPM_REGISTRY_URI = "artifactory.corp.clover.com/artifactory/api/npm/npm-local"
+def SCOPE = '@clover'
 def CACHE_VOL = "/home/jenkins/.cache:/home/node/.cache"
-def TIMEOUT_MINS = (CONFIG.TIMEOUT_MINS==null) ? env.GLOBAL_TIMEOUT_MINS : CONFIG.TIMEOUT_MINS
-def KEEP_ARTIFACT_DAYS = (CONFIG.KEEP_ARTIFACT_DAYS==null) ? env.GLOBAL_KEEP_ARTIFACT_DAYS : CONFIG.KEEP_ARTIFACT_DAYS
-def KEEP_ARTIFACT_NUM = (CONFIG.KEEP_ARTIFACT_NUM==null) ? env.GLOBAL_KEEP_ARTIFACT_NUM : CONFIG.KEEP_ARTIFACT_NUM
-def KEEP_BUILD_DAYS = (CONFIG.GLOBAL_KEEP_BUILD_DAYS==null) ? env.GLOBAL_KEEP_BUILD_DAYS : CONFIG.GLOBAL_KEEP_BUILD_DAYS
-def KEEP_BUILD_NUM = (CONFIG.KEEP_KEEP_BUILD_NUM==null) ? env.GLOBAL_KEEP_BUILD_NUM : CONFIG.KEEP_KEEP_BUILD_NUM
+def TIMEOUT_MINS =  env.GLOBAL_TIMEOUT_MINS 
+def KEEP_ARTIFACT_DAYS =  env.GLOBAL_KEEP_ARTIFACT_DAYS
+def KEEP_ARTIFACT_NUM = env.GLOBAL_KEEP_ARTIFACT_NUM
+def KEEP_BUILD_DAYS = env.GLOBAL_KEEP_BUILD_DAYS 
+def KEEP_BUILD_NUM = env.GLOBAL_KEEP_BUILD_NUM 
 
 pipeline {
   environment {
