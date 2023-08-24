@@ -16,10 +16,12 @@
 
 
 def SONARSCANNER_IMAGE = "sonarsource/sonar-scanner-cli" 
-def DOCKER_AGENT =  "gcr.io/clover-container-registries/node-web/node18.12"
+// def DOCKER_AGENT =  "gcr.io/clover-container-registries/node-web:latest"
+def DOCKER_AGENT = "gcr.io/clover-container-registries/node-web/node18.12"
 def MAIN_BRANCH_NAME = "main"
 def STORYBOOK_BRANCH_NAME = "storybook"
-def DISABLE_STORYBOOK = 'null'
+// def DISABLE_STORYBOOK = 'null'
+def DISABLE_STORYBOOK = 'true'
 def NPM_REGISTRY_URI = "artifactory.corp.clover.com/artifactory/api/npm/npm-local"
 def SCOPE = '@clover'
 def CACHE_VOL = "/home/jenkins/.cache:/home/node/.cache"
@@ -80,7 +82,8 @@ pipeline {
         sh script: "yarn install --frozen-lockfile", label: "Install"
         sh script: "yarn lint", label: "Lint"
         sh script: "yarn build", label: "Build"
-        sh script: "yarn test --coverage", label: "Test with Coverage"
+        // sh script: "yarn test --coverage", label: "Test with Coverage"
+         sh script: "yarn nx run ui:test --configuration=ci", label: "Test nx with Coverage"
       }
       post {
         always {
