@@ -1,0 +1,4 @@
+---
+pipeline_template: templates/Jenkinsfile.web.lerna-storybook-npm-module-v1.0
+SCOPE: "@clover-clover-web-lib-sprout"
+DOCKER_AGENT: gcr.io/clover-container-registries/node-web:latest
