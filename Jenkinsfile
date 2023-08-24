@@ -21,7 +21,7 @@ def DOCKER_AGENT = "gcr.io/clover-container-registries/node-web/node18.12"
 def MAIN_BRANCH_NAME = "main"
 def STORYBOOK_BRANCH_NAME = "storybook"
 // def DISABLE_STORYBOOK = 'null'
-def DISABLE_STORYBOOK = 'true'
+def DISABLE_STORYBOOK = 'null'
 def NPM_REGISTRY_URI = "artifactory.corp.clover.com/artifactory/api/npm/npm-local"
 def SCOPE = '@clover'
 def CACHE_VOL = "/home/jenkins/.cache:/home/node/.cache"
@@ -178,13 +178,13 @@ pipeline {
     }
 
     stage('Storybook') {
-      when {
-        allOf {
-          expression { env.IS_TEST_ENVIRONMENT != "true" }
-          expression { "${DISABLE_STORYBOOK}" == 'null' }
-          branch "${MAIN_BRANCH_NAME}"
-        }
-      }
+      // when {
+      //   allOf {
+      //     expression { env.IS_TEST_ENVIRONMENT != "true" }
+      //     expression { "${DISABLE_STORYBOOK}" == 'null' }
+      //     branch "${MAIN_BRANCH_NAME}"
+      //   }
+      // }
       agent {
         docker {
           image "${DOCKER_AGENT}"
@@ -213,7 +213,7 @@ pipeline {
 
           sh "yarn build-storybook"
 
-          sh "git add -f docs"
+          sh "git add -f dist/storybook"
 
           sh "git commit -m \"doc(chore): Generate Storybook\""
 
