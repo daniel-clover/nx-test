@@ -47,6 +47,7 @@
         }
       }
     },
+
     "serve": {
       "executor": "@nx/webpack:dev-server",
       "defaultConfiguration": "development",
